@@ -45,10 +45,20 @@ round(sd(penguin.df$flipper_length_mm,na.rm = T),digits = 2)
   - sex: a factor denoting penguin sex (female, male)
   - year: an integer denoting the study year (2007, 2008, or 2009)
 - The mean of flipper length is 200.92 and the sd is 14.06, the mean of bill length is 43.92 and the sd is 5.46.
+```{r}
+penguin.df %>%
+  ggplot(aes(x=bill_length_mm,y=flipper_length_mm,color=species))+
+  geom_point()+
+  xlab("Bill length (millimeters)")+
+  ylab("Flipper length (millimeters)")+
+  theme_bw()+
+  labs(title = "Relationship between lengrh of bill and flipper for aging penguins",
+       subtitle = "In different species")
+```
+
 
 ```{r message=FALSE, warning=FALSE}
 penguin.df %>%
-  filter(!is.na(sex)) %>%
   ggplot(aes(x=bill_length_mm,y=flipper_length_mm,color=species))+
   geom_point()+
   facet_wrap(~sex)+
